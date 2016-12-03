@@ -12,20 +12,25 @@ imshow(Image_gray);
 
 % intialization
 protentialTarget = zeros(size(Image_gray));
+target = zeros(size(Image_gray));
 
 % Step1 Variance WIE map calculation
 [WIEmap, meanEntropy] = WIEmap(Image_gray, n);
 
 % Step2 Mean-entropy thresholding
-k = 3000 / meanEntropy + 0.98; % experienced k value
+k = 3000 / meanEntropy + 1.05; % experienced k value
 Hth = k * meanEntropy;
-protentialTarget = (WIEmap > Hth) * 255;
-
-% step3 boundary cell discrimination.
-
-
-% result
+targetMask = (WIEmap > Hth);
+protentialTarget = targetMask * 255;
 figure(2);
 imshow(protentialTarget);
+
+% step3 boundary cell discrimination.
+target = uint8(targetMask) .* Image_gray;
+target = uint8((target > 128) * 255);
+
+% result
+figure(3);
+imshow(target);
 % fprintf('Program paused. Press enter to continue.\n');
 % pause;
