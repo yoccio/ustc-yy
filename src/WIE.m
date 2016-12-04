@@ -3,7 +3,7 @@ function [H, prob] = WIE(Cell)
 
 n = size(Cell,1);
 numberOfpixel = n * n;
-sAverage = (255 + 0) / 2;
+sAverage = mean(Cell(:));
 % initialization
 prob = zeros(numberOfpixel,1,'double');
 H = 0;
