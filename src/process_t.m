@@ -1,7 +1,7 @@
 clear ; close all; clc;
 
 % parameter setting
-n = 7;
+% n = 7;
 
 % load image 
 Image_rgb = imread('test_image_6.png','png');
@@ -13,13 +13,14 @@ imshow(Image_gray);
 % intialization
 protentialTarget = zeros(size(Image_gray));
 target = zeros(size(Image_gray));
+[n,k,global_meanEntropy] = setPara(Image_gray);
 
 % Step1 Variance WIE map calculation
 [WIEmap, meanEntropy] = WIEmap(Image_gray, n);
 
 % Step2 Mean-entropy thresholding
-k = 3000 / meanEntropy + 1.05; % experienced k value
-Hth = k * meanEntropy;
+% k = 3000 / meanEntropy + 1.05; % experienced k value
+Hth = k * global_meanEntropy;
 targetMask = (WIEmap > Hth);
 protentialTarget = targetMask * 255;
 figure(2);
