@@ -7,4 +7,4 @@
 # strong noise background  
 In this test, I found algorithm do not work well in strong noise background 
 using experiensed parameter.Much biger Hth should be set.  
-![](src/test_result_strongNoise.png)
+![](src/test_result_strongNoise.png)  
