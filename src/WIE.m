@@ -13,11 +13,11 @@ pixelMap = Cell(:);
 
 for pix = 1:length(pixelMap)
     s_temp = Cell(pix);
-    prob(s_temp+1) = prob(s_temp +1) + 1 / numberOfpixel;
+    prob(s_temp+1) = prob(s_temp +1) + 1.0 / numberOfpixel;
 end
 smap = [0:1:255]';
 prob(prob(:) == 0) = 1;
-Hmap = -(smap - sAverage).^2 .* prob(smap + 1) .* log(prob(smap + 1));
+Hmap = -(smap - sAverage).^2 .* prob(smap + 1) .* log2(prob(smap + 1));
 H = sum(Hmap);
 
 
